@@ -7,7 +7,7 @@
 .img{
     width : 40px;
     height : 40px;
-    display: inline;
+    /* display: inline; */
 }
 
 header{
@@ -19,17 +19,22 @@ header{
 
 nav{
     min-height: 10vh;
-    margin: auto; /* centering the elements inside the nav */
+    /* centering the elements inside the nav */
+    margin: auto; 
     width: 90%;
-    display: flex;
-    align-items: center;
+    /* display: flex;
+    flex-direction: row;
     justify-content: space-between;
+    align-items: center; */
 }
 
 nav ul{
     font-size: 1.5rem;
     flex: 1;
     list-style: none;
+    padding-top: 8px;
     display: flex;
+    flex-direction: row;
     justify-content: space-between;
+    align-items: center;
 }
