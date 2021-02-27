@@ -5,18 +5,12 @@
 }
 
 .img{
-<<<<<<< HEAD
     width : 7vw;
     height : 7vh;
 }
 
 #profile{
     border-radius: 50%;
-=======
-    width : 40px;
-    height : 40px;
-    /* display: inline; */
->>>>>>> 44883f5de1e0111dbacdc1090661cc96edce2a11
 }
 
 header{
@@ -43,11 +37,7 @@ nav ul{
     list-style: none;
     padding-top: 8px;
     display: flex;
-<<<<<<< HEAD
     align-items: center;
-=======
-    flex-direction: row;
->>>>>>> 44883f5de1e0111dbacdc1090661cc96edce2a11
     justify-content: space-between;
     align-items: center;
 }
