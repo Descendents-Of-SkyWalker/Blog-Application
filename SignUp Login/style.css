@@ -98,7 +98,7 @@
     position: absolute;
     z-index: 20;
     width: 2rem;
-    height: 0.5rem;
+    transition: all 0.5s ease;
+    height: 0.2rem;
     background-color: chartreuse;
-    transition: all 0.5s ease-in-out;
 }
