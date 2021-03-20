@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style1.css">
     <title>Sign Up</title>
     <!-- link: https://pin.it/6JTzdKJ -->
 </head>
@@ -16,23 +16,23 @@
             <ul>
                 <li>
                     <p>This is a list element 1</p>
-                    <div class="point"></div>
+                    <div class="outer-point"></div>
                 </li>
                 <li>
                     <p>This is a list element 1</p>
-                    <div class="point"></div>
+                    <div class="outer-point"></div>
                 </li>
                 <li>
                     <p>This is a list element 1</p>
-                    <div class="point"></div>
+                    <div class="outer-point"></div>
                 </li>
                 <li>
                     <p>This is a list element 1</p>
-                    <div class="point"></div>
+                    <div class="outer-point"></div>
                 </li>
             </ul>
         </div>
-        <div class="activeSelection">
+        <div class="activeSelection"> <!--bubble-->
         </div>
         <div class="card">
             <div class="content">
@@ -47,20 +47,25 @@
                 <form action="" id="signUpLogin">
                     <table id="inputs-table">
                         <tr>
-                            <td>City</td>
-                            <td><input type="text" class=""></td>
+                            <td class="tb-text"><p>State</p></td>
+                            <td><input type="text" class="text-box"></td>
                         </tr>
                         <tr>
-                            <td>State</td>
-                            <td><input type="text" class=""></td>
+                            <td class="tb-text"><p>City</p></td>
+                            <td><input type="text" class="text-box"></td>
                         </tr>
                         <tr>
-                            <td>Address</td>
+                            <td class="tb-text"><p>PIN Code</p></td>
+                            <td><input type="text" class="text-box"></td>
+                        </tr>
+                        <tr>
+                            <td class="tb-text"><p>Address</p></td>
                             <td> 
-                                <textarea name="" id="textarea"></textarea>
+                                <textarea name="" class="text-box" id="textarea"></textarea>
                             </td>
                         </tr>
                     </table>
+                    <button id="next">Next</button>
                 </form>
             </div>
         </div>
