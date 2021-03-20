@@ -4,6 +4,9 @@
     margin: 0;
     overflow: hidden;
 }
+body {
+    font-family: 'Poppins', sans-serif;
+}
 .container{
     display: flex;
     width: 100vw;
@@ -64,6 +67,7 @@
 }
 .list ul{
     list-style-type: none;
+
 }
 .list ul li{
     display: flex;
@@ -95,6 +99,7 @@
 }
 .headers{
     width: 100%;
+    font-size: 1.3rem;
 }
 .headers > ul{
     display: flex;
@@ -141,7 +146,7 @@
     font-size: 15px;
     padding-left: 20px;
 }
-.tb-text p{
+.tb-text p {
     margin-top: 10px;
 }
 #textarea{
@@ -169,6 +174,22 @@
     background-color: rgba(0, 14, 143, 0.3);
 }
 #next:active{
+    background-color: rgba(0, 14, 143, 0.7);
+    color: #FFF;
+}
+#submit {
+    margin: 0% 50%;
+    width: 100px;
+    height: 40px;
+    color: rgb(0, 14, 143);
+    border-color: rgb(0, 14, 143);
+    outline: none;
+    transition: all 0.25s;
+}
+#submit:hover{
+    background-color: rgba(0, 14, 143, 0.3);
+}
+#submit:active{
     background-color: rgba(0, 14, 143, 0.7);
     color: #FFF;
 }
