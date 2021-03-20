@@ -81,6 +81,7 @@
     background-color: rgb(255, 255, 255);
     box-shadow: 0 0 2px rgb(180, 180, 180); 
     border-radius: 50%;
+    text-align: center;
 }
 .outer-point.done{
     border: 2.5px solid chartreuse;
