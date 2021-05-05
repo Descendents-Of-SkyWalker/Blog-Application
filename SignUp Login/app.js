@@ -89,7 +89,8 @@ function interestRecorder(){
                 listDone(iteration);
                 next.disabled = false;
                 next.addEventListener('click', () => {
-                    console.log(choices);
+                    dataPackager["Interests"] = choices.join(",");
+                    console.log(dataPackager);
                 });
             }
         })
@@ -125,7 +126,7 @@ bar.style.top = `${values.y+40}px`;
 bar.style.width = `${values.width + 30}px`;
 
 let aboutYouKeys = ["Name","Age","Gender","Bio"];
-let credentialsKeys = ["Mail ID","Username","Password","Re-type Password"];
+let credentialsKeys = ["Username","Mail ID","Password"];
 let addressKeys = ["State","City","PIN Code","Address"];
 
 let iteration = 0;
@@ -135,15 +136,22 @@ const next = document.querySelector("#next");
 
 // initializing first information data table
 dataBuilder(aboutYouKeys);
-
-let dataHeaderList = ["About", "Address", "Credentials", "Interests"];
-let dataKeyList = [aboutYouKeys, credentialsKeys, addressKeys];
+let dataPackager = {};
 
 next.addEventListener('click', (event)=>{
     event.preventDefault();
     if (iteration < 3){
-        for (let i of document.querySelectorAll("input"))
-            console.log(i.value);
+        let table = document.querySelector("table");
+        let keylist = table.querySelectorAll("p");
+        let valuelist = table.querySelectorAll("input");
+        let exceptional = table.querySelector("textarea");
+
+        for(let i = 0; i < keylist.length - 1; i++)
+            dataPackager[keylist[i].innerText] = valuelist[i].value;
+        keylist.length != valuelist.length ?
+            dataPackager[keylist[keylist.length-1].innerText] = exceptional.value
+            : dataPackager[keylist[keylist.length-1].innerText] = valuelist[keylist.length-1].value;
+        console.log(dataPackager);
         document.querySelector("table").remove();
         iteration = syncShift(iteration);
     }
