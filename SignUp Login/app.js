@@ -1,142 +1,37 @@
-const list = document.querySelectorAll('.list-elem');
-const bar = document.querySelector(".activeSelection");
-let values = list[0].getBoundingClientRect();
-const points = document.querySelectorAll(".outer-point");
-
-bar.style.left = `${values.x-15}px`;
-bar.style.top = `${values.y+40}px`;
-bar.style.width = `${values.width + 30}px`;
-
-let iteration = 0;
-listCurrent(iteration);
-const next = document.querySelector("#next");
-
-
-// initializing first information data table
-aboutYouBuilder();
-
-next.addEventListener('click', (event)=>{
-    event.preventDefault();
-    if (iteration < 3)
-        document.querySelector("table").remove();
-    switch (iteration) {
-        case 0:
-            addressBuilder();
-            listDone(iteration);
-            iteration++;
-            listCurrent(iteration);
-            bubbleMover(iteration);
-            break;
-        case 1:
-            credentialsBuilder();
-            listDone(iteration);
-            iteration++;
-            listCurrent(iteration);
-            bubbleMover(iteration);
-            break;
-        case 2:
-            listDone(iteration);
-            interestsBuilder();
-            interestRecorder();
-            iteration++;
-            listCurrent(iteration);
-            bubbleMover(iteration);
-            break;
-    }
-});
-
-
-
 function bubbleMover(iterator){
     let values = list[iterator].getBoundingClientRect();
     bar.style.left = `${values.x-15}px`;
         bar.style.top = `${values.y+40}px`;
         bar.style.width = `${values.width + 30}px`;
 }
-
-function aboutYouBuilder(){
+// common data builder for all elements except interests on signup page
+function dataBuilder(data){
     let container = document.querySelector("#signUpLogin");
     let table = document.createElement("table");
     table.id = "inputs-table";
-    let data = ["Name","Age","Gender","Bio"];
     for(let i=0;i<data.length;i++){
         let tr = document.createElement("tr");
         let td_1 = document.createElement("td");
         let td_2 = document.createElement("td");
         let p = document.createElement("p");
         let input;
-        if(data[i] != "Bio"){
-            input = document.createElement("input");
-            input.type = "text";
-            input.className = "text-box";
-        }
-        else{
+        if(data[i] == "Bio" || data[i] == "Address"){
             input = document.createElement("textarea");
             input.type = "text";
             input.className = "text-box";
             input.id = "textarea";
         }
-        tr.appendChild(td_1);
-        tr.appendChild(td_2);
-        td_1.className = "tb-text";
-        td_1.appendChild(p);
-        p.innerText = `${data[i]}`;
-        td_2.appendChild(input);
-        table.appendChild(tr);
-    }
-    container.appendChild(table);
-}
-
-function credentialsBuilder(){
-    let container = document.querySelector("#signUpLogin");
-    let table = document.createElement("table");
-    let data = ["Mail ID","Username","Password","Re-type Password"]
-    table.id = "inputs-table";
-    for(let i=0;i<data.length;i++){
-        let tr = document.createElement("tr");
-        let td_1 = document.createElement("td");
-        let td_2 = document.createElement("td");
-        let p = document.createElement("p");
-        let input = document.createElement("input");
-        if(data[i].includes("Password"))
-            input.type = "password";
-        else
-            input.type = "text";
-        input.className = "text-box";
-        tr.appendChild(td_1);
-        tr.appendChild(td_2);
-        td_1.className = "tb-text";
-        td_1.appendChild(p);
-        p.innerText = `${data[i]}`;
-        td_2.appendChild(input);
-        table.appendChild(tr);
-    }
-    container.appendChild(table);
-}
-
-
-
-function addressBuilder(){
-    let container = document.querySelector("#signUpLogin");
-    let table = document.createElement("table");
-    table.id = "inputs-table";
-let data = ["State","City","PIN Code","Address"];
-    for(let i=0;i<data.length;i++){
-        let tr = document.createElement("tr");
-        let td_1 = document.createElement("td");
-        let td_2 = document.createElement("td");
-        let p = document.createElement("p");
-        let input;
-        if(data[i] != "Address"){
-            input = document.createElement("input");
-            input.type = "text";
-            input.className = "text-box";
-        }
         else{
-            input = document.createElement("textarea");
-            input.type = "text";
+            input = document.createElement("input");
+            if(data[i].includes("Password"))
+                input.type = "password";
+            else if (data[i].includes("Mail"))
+                input.type = "mail";
+            else if (data[i].includes("Age") || data[i].includes("PIN"))
+                input.type = "number";
+            else
+                input.type = "text";
             input.className = "text-box";
-            input.id = "textarea";
         }
         tr.appendChild(td_1);
         tr.appendChild(td_2);
@@ -148,7 +43,7 @@ let data = ["State","City","PIN Code","Address"];
     }
     container.appendChild(table);
 }
-
+// builds the interests page
 function interestsBuilder(){
     let container = document.querySelector("#signUpLogin");
     let selection = ["Fun","Philosophy","Work","Inspiration","Lesuire",
@@ -163,14 +58,18 @@ function interestsBuilder(){
         let btn = document.createElement("button");
         btn.innerText = selection[i];
         btn.classList.toggle("choice");
+        btn.isSelectedFlag = false;
         inputs.appendChild(btn);
     }
     container.appendChild(inputs);
 }
-
+// records the interests that a person enters (atleast 3 are required)
 function interestRecorder(){
+    interestsBuilder();
     let inputs = document.querySelectorAll(".choice");
     let counter = 0;
+    let flag = false; // this makes sure that the next is disabled only once and event listener is added only once
+    let choices = []; // choices of the user will be registered onto this;
     next.innerText = "Submit";
     next.disabled = true;
     for(let i of inputs){
@@ -179,21 +78,87 @@ function interestRecorder(){
             i.style.borderColor = "rgba(0, 14, 143)";
             i.style.color = "white";
             i.style.backgroundColor = "rgba(0, 14, 143, 0.7)";
-            counter++;
-            if (counter>=3){
+            // makes sure only one click per button is recorded
+            if (!i.isSelectedFlag){
+                i.isSelectedFlag = true;
+                counter++;
+                choices.push(i.innerText);
+            }
+            if (counter>=3 && !flag){
+                flag = true;
                 listDone(iteration);
                 next.disabled = false;
+                next.addEventListener('click', () => {
+                    console.log(choices);
+                });
             }
         })
     }
 }
 
+// shifts color from blue to green on circles
 function listDone(done){
     points[done].classList.toggle("current");
     points[done].classList.toggle("done");
 }
-
+// shifts color from white to blue on circles
 function listCurrent(current){
     points[current].classList.toggle("current");
 }
+// combines functions to simply the process
+function syncShift(iterator){
+    listDone(iterator);
+    iterator++;
+    listCurrent(iterator);
+    bubbleMover(iterator);
+    return iterator;
+}
 
+
+const list = document.querySelectorAll('.list-elem');
+const bar = document.querySelector(".activeSelection");
+let values = list[0].getBoundingClientRect();
+const points = document.querySelectorAll(".outer-point");
+
+bar.style.left = `${values.x-15}px`;
+bar.style.top = `${values.y+40}px`;
+bar.style.width = `${values.width + 30}px`;
+
+let aboutYouKeys = ["Name","Age","Gender","Bio"];
+let credentialsKeys = ["Mail ID","Username","Password","Re-type Password"];
+let addressKeys = ["State","City","PIN Code","Address"];
+
+let iteration = 0;
+let flagInterests = false;
+listCurrent(iteration);
+const next = document.querySelector("#next");
+
+// initializing first information data table
+dataBuilder(aboutYouKeys);
+
+let dataHeaderList = ["About", "Address", "Credentials", "Interests"];
+let dataKeyList = [aboutYouKeys, credentialsKeys, addressKeys];
+
+next.addEventListener('click', (event)=>{
+    event.preventDefault();
+    if (iteration < 3){
+        for (let i of document.querySelectorAll("input"))
+            console.log(i.value);
+        document.querySelector("table").remove();
+        iteration = syncShift(iteration);
+    }
+    switch (iteration) {
+        case 1:
+            dataBuilder(addressKeys);
+            break;
+        case 2:
+            dataBuilder(credentialsKeys);
+            break;
+        case 3:
+            if (!flagInterests){
+                flagInterests = true;
+                interestRecorder();
+            }
+            break;
+    }
+});
