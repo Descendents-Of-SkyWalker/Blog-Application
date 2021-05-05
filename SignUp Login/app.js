@@ -17,7 +17,8 @@ aboutYouBuilder();
 
 next.addEventListener('click', (event)=>{
     event.preventDefault();
-    document.querySelector("table").remove();
+    if (iteration < 3)
+        document.querySelector("table").remove();
     switch (iteration) {
         case 0:
             addressBuilder();
@@ -40,10 +41,6 @@ next.addEventListener('click', (event)=>{
             iteration++;
             listCurrent(iteration);
             bubbleMover(iteration);
-        case 3:
-            listDone(iteration);
-            next.innerText = "Submit";
-        default:
             break;
     }
 });
@@ -117,11 +114,13 @@ function credentialsBuilder(){
     container.appendChild(table);
 }
 
+
+
 function addressBuilder(){
     let container = document.querySelector("#signUpLogin");
     let table = document.createElement("table");
-    table.id = "input-table";
-    let data = ["State","City","PIN Code","Address"];
+    table.id = "inputs-table";
+let data = ["State","City","PIN Code","Address"];
     for(let i=0;i<data.length;i++){
         let tr = document.createElement("tr");
         let td_1 = document.createElement("td");
@@ -146,8 +145,8 @@ function addressBuilder(){
         p.innerText = `${data[i]}`;
         td_2.appendChild(input);
         table.appendChild(tr);
-    container.appendChild(table);
     }
+    container.appendChild(table);
 }
 
 function interestsBuilder(){
@@ -171,12 +170,20 @@ function interestsBuilder(){
 
 function interestRecorder(){
     let inputs = document.querySelectorAll(".choice");
+    let counter = 0;
+    next.innerText = "Submit";
+    next.disabled = true;
     for(let i of inputs){
         i.addEventListener('click', (event)=>{
             event.preventDefault();
             i.style.borderColor = "rgba(0, 14, 143)";
             i.style.color = "white";
             i.style.backgroundColor = "rgba(0, 14, 143, 0.7)";
+            counter++;
+            if (counter>=3){
+                listDone(iteration);
+                next.disabled = false;
+            }
         })
     }
 }
