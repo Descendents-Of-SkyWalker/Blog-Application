@@ -9,15 +9,18 @@ bar.style.width = `${values.width + 30}px`;
 
 let iteration = 0;
 listCurrent(iteration);
-
 const next = document.querySelector("#next");
+
+
+// initializing first information data table
+aboutYouBuilder();
 
 next.addEventListener('click', (event)=>{
     event.preventDefault();
-    document.getElementById("inputs-table").remove();
+    document.querySelector("table").remove();
     switch (iteration) {
         case 0:
-            aboutYouBuilder();
+            addressBuilder();
             listDone(iteration);
             iteration++;
             listCurrent(iteration);
@@ -44,6 +47,8 @@ next.addEventListener('click', (event)=>{
             break;
     }
 });
+
+
 
 function bubbleMover(iterator){
     let values = list[iterator].getBoundingClientRect();
@@ -112,6 +117,39 @@ function credentialsBuilder(){
     container.appendChild(table);
 }
 
+function addressBuilder(){
+    let container = document.querySelector("#signUpLogin");
+    let table = document.createElement("table");
+    table.id = "input-table";
+    let data = ["State","City","PIN Code","Address"];
+    for(let i=0;i<data.length;i++){
+        let tr = document.createElement("tr");
+        let td_1 = document.createElement("td");
+        let td_2 = document.createElement("td");
+        let p = document.createElement("p");
+        let input;
+        if(data[i] != "Address"){
+            input = document.createElement("input");
+            input.type = "text";
+            input.className = "text-box";
+        }
+        else{
+            input = document.createElement("textarea");
+            input.type = "text";
+            input.className = "text-box";
+            input.id = "textarea";
+        }
+        tr.appendChild(td_1);
+        tr.appendChild(td_2);
+        td_1.className = "tb-text";
+        td_1.appendChild(p);
+        p.innerText = `${data[i]}`;
+        td_2.appendChild(input);
+        table.appendChild(tr);
+    container.appendChild(table);
+    }
+}
+
 function interestsBuilder(){
     let container = document.querySelector("#signUpLogin");
     let selection = ["Fun","Philosophy","Work","Inspiration","Lesuire",
@@ -146,11 +184,9 @@ function interestRecorder(){
 function listDone(done){
     points[done].classList.toggle("current");
     points[done].classList.toggle("done");
-    console.log(points[done]);
 }
 
 function listCurrent(current){
     points[current].classList.toggle("current");
-    console.log(points[current]);
-
 }
+
