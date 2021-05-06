@@ -89,8 +89,11 @@ function interestRecorder(){
                 listDone(iteration);
                 next.disabled = false;
                 next.addEventListener('click', () => {
-                    dataPackager["Interests"] = choices.join(",");
+                    dataPackager.append("Interests", choices.join(","));
+                    let wrapper = new FormData();
+                    wrapper.append("signup_data", dataPackager);
                     console.log(dataPackager);
+                    getter(wrapper);
                 });
             }
         })
@@ -115,6 +118,31 @@ function syncShift(iterator){
     return iterator;
 }
 
+const url = "http://localhost/IWP-Project/PHP_backend/database.php";
+
+async function getPostedData(entries){
+    try {
+        // let entries = new FormData(document.querySelector('#inputform'));
+        return await fetch(url, {
+            method: "POST",
+            body: entries,
+            // mode: 'no-cors'
+        }).then(
+            response => response.text()
+        )
+    }
+    catch (error) {
+        console.log(error);
+    }
+}
+
+async function getter(entries) {
+    let varr = await getPostedData(entries);
+    console.log(varr);
+
+    // console.log(typeof(varr));
+}
+
 
 const list = document.querySelectorAll('.list-elem');
 const bar = document.querySelector(".activeSelection");
@@ -136,7 +164,7 @@ const next = document.querySelector("#next");
 
 // initializing first information data table
 dataBuilder(aboutYouKeys);
-let dataPackager = {};
+let dataPackager = new FormData();
 
 next.addEventListener('click', (event)=>{
     event.preventDefault();
@@ -147,10 +175,10 @@ next.addEventListener('click', (event)=>{
         let exceptional = table.querySelector("textarea");
 
         for(let i = 0; i < keylist.length - 1; i++)
-            dataPackager[keylist[i].innerText] = valuelist[i].value;
+            dataPackager.append(keylist[i].innerText, valuelist[i].value);
         keylist.length != valuelist.length ?
-            dataPackager[keylist[keylist.length-1].innerText] = exceptional.value
-            : dataPackager[keylist[keylist.length-1].innerText] = valuelist[keylist.length-1].value;
+            dataPackager.append(keylist[keylist.length-1].innerText, exceptional.value):dataPackager.append(keylist[keylist.length-1].innerText, valuelist[keylist.length-1].value);
+
         console.log(dataPackager);
         document.querySelector("table").remove();
         iteration = syncShift(iteration);
