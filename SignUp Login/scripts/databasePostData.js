@@ -3,21 +3,48 @@ function extractor(dataPackager){
     let keylist = table.querySelectorAll("p");
     let valuelist = table.querySelectorAll("input");
     let exceptional = table.querySelector("textarea");
+    let flag;
 
-    for(let i = 0; i < keylist.length - 1; i++)
-        dataPackager.append(keylist[i].innerText, valuelist[i].value);
-    keylist.length != valuelist.length ?
-        dataPackager.append(keylist[keylist.length-1].innerText, exceptional.value):dataPackager.append(keylist[keylist.length-1].innerText, valuelist[keylist.length-1].value);
+    for(let i = 0;i < valuelist.length;i++){
+        if (valuelist[i].value == ''){
+            alert("Please fill out all the fields");
+            return false;
+        }
+    }
 
+    for(let i = 0; i < keylist.length - 1; i++){
+        flag = innerPackager(keylist[i].innerText,valuelist[i].value, flag, dataPackager);
+        if (!flag)
+            break; // to not collect remaining data if a data field is wrong
+    }
+    // not collect data if a data field is wrong 
+    if (flag){
+        keylist.length != valuelist.length ? 
+        flag = innerPackager(keylist[keylist.length-1].innerText,exceptional.value, flag, dataPackager)
+        :
+        flag = innerPackager(keylist[keylist.length-1].innerText, valuelist[keylist.length-1].value, flag, dataPackager);
+    }
     console.log(dataPackager);
-    document.querySelector("table").remove();
+    // console.log(flag);
+    if (flag)
+        document.querySelector("table").remove();
+    return flag;
+}
+
+function innerPackager(key, value, flag, dataPackager){
+    flag = validator(key, value);
+    console.log(flag);
+    if (flag)
+        dataPackager.append(key, value);
+    else
+        alert(`Please enter a valid ${key}`);
+    return flag;
 }
 
 const url = "http://localhost/IWP-Project/PHP_backend/database.php";
 
 async function getPostedData(entries){
     try {
-        // let entries = new FormData(document.querySelector('#inputform'));
         return await fetch(url, {
             method: "POST",
             body: entries,

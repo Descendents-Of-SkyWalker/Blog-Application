@@ -57,22 +57,21 @@ let dataPackager = new FormData();
 
 next.addEventListener('click', (event)=>{
     event.preventDefault();
-    if (iteration < 3){
-        extractor(dataPackager);
-        iteration = syncShift(iteration);
-    }
-    switch (iteration) {
-        case 1:
-            dataBuilder(addressKeys);
-            break;
-        case 2:
-            dataBuilder(credentialsKeys);
-            break;
-        case 3:
-            if (!flagInterests){
-                flagInterests = true;
-                interestRecorder();
+    if (iteration < 3 && extractor(dataPackager)){
+            iteration = syncShift(iteration);
+            switch (iteration) {
+                case 1:
+                    dataBuilder(addressKeys);
+                    break;
+                case 2:
+                    dataBuilder(credentialsKeys);
+                    break;
+                case 3:
+                    if (!flagInterests){
+                        flagInterests = true;
+                        interestRecorder();
+                    }
+                    break;
             }
-            break;
     }
 });

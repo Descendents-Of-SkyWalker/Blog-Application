@@ -21,8 +21,17 @@ function dataBuilder(data){
                 input.type = "password";
             else if (data[i].includes("Mail"))
                 input.type = "mail";
-            else if (data[i].includes("Age") || data[i].includes("PIN"))
+            else if (data[i].includes("Age") || data[i].includes("PIN")){
                 input.type = "number";
+                if (data[i].includes("Age")){
+                    input.min = '18';
+                    input.max = '100';
+                }
+                else if (data[i].includes("PIN")){
+                    input.max = '999999';
+                    input.min = '99999';
+                }
+            }
             else
                 input.type = "text";
             input.className = "text-box";
