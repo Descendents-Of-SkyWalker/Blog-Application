@@ -13,16 +13,16 @@ function extractor(dataPackager){
     }
 
     for(let i = 0; i < keylist.length - 1; i++){
-        flag = innerPackager(keylist[i].innerText,valuelist[i].value, flag, dataPackager);
+        flag = innerPackager((keylist[i].innerText).toLowerCase(),valuelist[i].value, flag, dataPackager);
         if (!flag)
             break; // to not collect remaining data if a data field is wrong
     }
     // not collect data if a data field is wrong 
     if (flag){
         keylist.length != valuelist.length ? 
-        flag = innerPackager(keylist[keylist.length-1].innerText,exceptional.value, flag, dataPackager)
+        flag = innerPackager((keylist[keylist.length-1].innerText).toLowerCase(),exceptional.value, flag, dataPackager)
         :
-        flag = innerPackager(keylist[keylist.length-1].innerText, valuelist[keylist.length-1].value, flag, dataPackager);
+        flag = innerPackager((keylist[keylist.length-1].innerText).toLowerCase(), valuelist[keylist.length-1].value, flag, dataPackager);
     }
     console.log(dataPackager);
     // console.log(flag);
@@ -41,7 +41,7 @@ function innerPackager(key, value, flag, dataPackager){
     return flag;
 }
 
-const url = "http://localhost/IWP-Project/PHP_backend/database.php";
+const url = "http://localhost/IWP-Project/Backend/signup_login.php";
 
 async function getPostedData(entries){
     try {

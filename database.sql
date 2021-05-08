@@ -15,6 +15,6 @@ create table Users(
     city varchar(50),
     pinCode int(6),
     address varchar(255),
-    interests varchar(1000)
+    interests varchar(500)
 );
 
