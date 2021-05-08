@@ -68,6 +68,7 @@ class Blogs {
         const innerTwo = this.addElement('section', 'inner-two');
         const section1 = document.createElement('section');
         const small1 = this.addContent(this.addElement('div', 'small'));
+        small1.setAttributeNode(att);
         const big = this.addContent(this.addElement('div', 'big'));
         const small2 = this.addContent(this.addElement('div', 'small'));
         section1.appendChild(small1);
@@ -82,6 +83,7 @@ class Blogs {
         const innerTwo = this.addElement('section', 'inner-two');
         const section1 = document.createElement('section');
         const big = this.addContent(this.addElement('div', 'big'));
+        big.setAttributeNode(att);
         const small = this.addContent(this.addElement('div', 'small'));
         section1.appendChild(big);
         section1.appendChild(small);
@@ -104,6 +106,16 @@ class Blogs {
         temp.classList.add(className);
         if (className === 'big' || className === 'small' || className === 'inner-three') {
             temp.classList.add('tile');
+            let att = document.createAttribute("data-aos");
+            if (className === 'inner-three') {
+                att.value = "fade-left";
+                temp.setAttributeNode(att);
+            }
+            else {
+                att.value = "fade-up";
+                temp.setAttributeNode(att);
+            }
+
         }
         return temp;
     }
@@ -134,14 +146,14 @@ class Quotes {
         for (let i = 0; i < n; i++) {
             const quoteTile = this.addElement('div', 'quote-tile');
             const qr = this.addElement('img', 'q-icon');
-            qr.src = "Assets/quote-right-48.png";
+            qr.src = "../Assets/quote-right-48.png";
             qr.alt = "q";
             const quote = this.addElement('div', 'quote');
-            quote.innerHTML = "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Consequuntur cum aperiam blanditiis repellendus possimus nemo quam saepe dicta, temporibus, nobis adipisci suscipit at perspiciatis. Consequatur nobis expedita at atque dolores!"
+            quote.innerHTML = "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Consequuntur cum aperiam blanditiis repellendus possimus nemo quam saepe dicta, temporibus, nobis adipisci suscipit at perspiciatis. Consequatur nobis expedita at atque dolores! Lorem ipsum dolor sit amet consectetur, adipisicing elit. Consequuntur cum aperiam blanditiis repellendus possimus nemo quam saepe dicta, temporibus, nobis adipisci suscipit at perspiciatis. Consequatur nobis expedita at atque dolores!"
             const writer = this.addElement('div', 'writer');
             writer.innerHTML = "Lorem Ipsum";
             const ql = this.addElement('img', 'q-icon');
-            ql.src = "Assets/quote-left-48.png";
+            ql.src = "../Assets/quote-left-48.png";
             ql.alt = "q";
             quoteTile.appendChild(qr);
             quoteTile.appendChild(quote);
@@ -154,6 +166,11 @@ class Quotes {
     addElement(elementType, className) {
         const temp = document.createElement(elementType);
         temp.classList.add(className);
+        if (className === 'quote-tile') {
+            let att = document.createAttribute("data-aos");
+            att.value = "flip-left";
+            temp.setAttributeNode(att);
+        }
         return temp;
     }
 }
