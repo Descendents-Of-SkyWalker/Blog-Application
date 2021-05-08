@@ -37,6 +37,33 @@
             else
                 return FALSE;
         }
+        function validate_data($arr, $case){
+            $email = $arr['email'];
+            switch($case){
+                case 0:
+                    $password = $arr['password'];
+                    $query = "select * from users ";
+                    $value = "where mail_id='" . $email . "'"
+                    . " and " . "password='" . $password . "'";
+                    $res = mysqli_query($this->db, ($query . $value));
+                    if ($res->num_rows > 0){
+                        mysqli_close($this->db);
+                        return TRUE;
+                    }
+                    else
+                        return FALSE;
+                case 1:
+                    $query = "select * from users ";
+                    $value = "where mail_id='" . $email . "'";
+                    $res = mysqli_query($this->db, ($query . $value));
+                    if ($res->num_rows > 0){
+                        mysqli_close($this->db);
+                        return TRUE;
+                    }
+                    else
+                        return FALSE;
+            }
+        }
     }
     
 ?>

@@ -25,7 +25,7 @@ function interestRecorder(){
                 next.disabled = false;
                 next.addEventListener('click', () => {
                     dataPackager.append("Interests", choices.join(","));
-                    console.log(dataPackager);
+                    dataPackager.append("action", "signup");
                     getter(dataPackager);
                 });
             }
