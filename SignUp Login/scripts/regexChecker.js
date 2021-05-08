@@ -1,5 +1,5 @@
 let nameRegex = /^[a-zA-Z ]+$/;
-let userRegex = /^[a-zA-Z0-9]+$/;
+let userRegex = /^[ A-Za-z0-9_@./#&+-]+$/;
 let mailRegex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
 let pswdRegex = /^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{5,20}$/;
 
