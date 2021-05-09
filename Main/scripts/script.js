@@ -1,4 +1,4 @@
-let blogsList = ["sample", "sample", "sample", "sample", "sample", "sample", "sample", "sample", "sample", "sample", "sample", "sample", "sample", "sample"];
+let blogsList = ["sample", "sample", "sample", "sample", "sample", "sample", "sample", "sample", "sample", "sample", "sample", "sample", "sample"];
 const main = document.querySelector('main');
 const checkBox = document.querySelector('input[type="checkbox"');
 
@@ -68,7 +68,6 @@ class Blogs {
         const innerTwo = this.addElement('section', 'inner-two');
         const section1 = document.createElement('section');
         const small1 = this.addContent(this.addElement('div', 'small'));
-        small1.setAttributeNode(att);
         const big = this.addContent(this.addElement('div', 'big'));
         const small2 = this.addContent(this.addElement('div', 'small'));
         section1.appendChild(small1);
@@ -83,7 +82,6 @@ class Blogs {
         const innerTwo = this.addElement('section', 'inner-two');
         const section1 = document.createElement('section');
         const big = this.addContent(this.addElement('div', 'big'));
-        big.setAttributeNode(att);
         const small = this.addContent(this.addElement('div', 'small'));
         section1.appendChild(big);
         section1.appendChild(small);
@@ -120,11 +118,27 @@ class Blogs {
         return temp;
     }
     addContent(parent) {
-        const t = this.addElement('div', 'title');
-        t.innerHTML = "Sample";
+        // Pass as parameters, the title, name of author, and first 230 char of the blog
+        // t-->title | a-->author name | b-->230 chars+'...'
+        let t;
+        if (parent.classList.contains('inner-three')) {
+            t = this.addElement('div', 'title-it');
+            t.innerHTML = "Sample";
+        }
+        else if (parent.classList.contains('big')) {
+            t = this.addElement('div', 'title-b');
+            t.innerHTML = "Sample";
+        }
+        else if (parent.classList.contains('small')) {
+            t = this.addElement('div', 'title-s');
+            t.innerHTML = "Sample";
+        }
+        const a = this.addElement('div', 'author');
+        a.innerHTML = "Rajvi Jasani";
         const b = this.addElement('div', 'content');
         b.innerHTML = "This paragraph is of two hundred and thirty characters including white spaces. You will be able to see only the first two hundred and thirty characters of this blog. To read the full blog, click on this tile. It might interest you...";
         parent.appendChild(t);
+        parent.appendChild(a);
         parent.appendChild(b);
         return parent;
     }
@@ -139,27 +153,32 @@ class Quotes {
             this.addTiles(3);
             this.len -= 3;
         }
-        this.addTiles(this.len);
+        if (this.len !== 0) {
+            this.addTiles(this.len);
+        }
     }
     addTiles(n) {
+        // quote-->quote | writer-->name of writer
         const quoteContainer = this.addElement('section', 'quote-container');
         for (let i = 0; i < n; i++) {
+            const quoteTileWrap = this.addElement('div', 'quote-tile-wrap');
             const quoteTile = this.addElement('div', 'quote-tile');
             const qr = this.addElement('img', 'q-icon');
-            qr.src = "../Assets/quote-right-48.png";
+            qr.src = "../Assets/quote-right-w.png";
             qr.alt = "q";
             const quote = this.addElement('div', 'quote');
-            quote.innerHTML = "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Consequuntur cum aperiam blanditiis repellendus possimus nemo quam saepe dicta, temporibus, nobis adipisci suscipit at perspiciatis. Consequatur nobis expedita at atque dolores! Lorem ipsum dolor sit amet consectetur, adipisicing elit. Consequuntur cum aperiam blanditiis repellendus possimus nemo quam saepe dicta, temporibus, nobis adipisci suscipit at perspiciatis. Consequatur nobis expedita at atque dolores!"
+            quote.innerHTML = "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Consequuntur cum aperiam blanditiis repellendus possimus nemo quam saepe dicta, temporibus, nobis adipisci suscipit at perspiciatis. Consequatur nobis expedita at atque dolores!"
             const writer = this.addElement('div', 'writer');
             writer.innerHTML = "Lorem Ipsum";
             const ql = this.addElement('img', 'q-icon');
-            ql.src = "../Assets/quote-left-48.png";
+            ql.src = "../Assets/quote-left-w.png";
             ql.alt = "q";
             quoteTile.appendChild(qr);
             quoteTile.appendChild(quote);
             quoteTile.appendChild(writer);
             quoteTile.appendChild(ql);
-            quoteContainer.appendChild(quoteTile);
+            quoteTileWrap.appendChild(quoteTile)
+            quoteContainer.appendChild(quoteTileWrap);
         }
         main.appendChild(quoteContainer);
     }
