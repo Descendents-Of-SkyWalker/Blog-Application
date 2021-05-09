@@ -5,12 +5,20 @@ let btn = document.querySelector('button');
 btn.addEventListener("click", (event) => {
     event.preventDefault();
     let form = new FormData();
-    for(let i = 0;i < 2;i++){
-        if (inputNodes[i].value != "")
-            form.append((titleNodes[i].innerText).toLowerCase(), inputNodes[i].value);
-        else
-            alert("Input valid data");
-    }
+    let flag = false;
     form.append("action","login");
-    getter(form);
+    for(let i = 0;i < 2;i++){
+        if (inputNodes[i].value != "" && validator((titleNodes[i].innerText).toLowerCase(), inputNodes[i].value)){
+            form.append((titleNodes[i].innerText).toLowerCase(), inputNodes[i].value);
+            flag = true;
+        }
+        else{
+            alert("Input valid data");
+            flag = false;
+            break;
+        }
+    }
+    if (flag){
+        getter(form);
+    }
 });

@@ -38,7 +38,7 @@
                 return FALSE;
         }
         function validate_data($arr, $case){
-            $email = $arr['email'];
+            $email = $arr['mail_id'];
             switch($case){
                 case 0:
                     $password = $arr['password'];
