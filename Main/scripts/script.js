@@ -215,3 +215,9 @@ function removeAllElements(parent) {
         parent.removeChild(parent.firstChild);
     }
 }
+
+const menu = document.querySelector('#menu');
+menu.addEventListener('click', () => {
+    const links = document.querySelector('.links');
+    links.classList.toggle("expand");
+})
