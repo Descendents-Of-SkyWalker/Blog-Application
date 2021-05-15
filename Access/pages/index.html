@@ -7,17 +7,25 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="shortcut icon" href="../../Main/Assets/favicon.ico" type="image/x-icon">
     <link rel="stylesheet" href="../styles/style.css">
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css">
     <title>Welcome</title>
 </head>
 
 <body>
     <div class="welcome">
-        <h1>Welcome To<br>Vibranium Blogs</h1>
-        <div id="pointers">
+        <h1 data-aos="zoom-out-down">Welcome To<br>Vibranium Blogs</h1>
+        <div id="pointers" data-aos="zoom-out-down">
             <a href="signup.html"><button id="excess">Sign Up</button></a>
             <a href="login.html"><button id="excess">Login</button></a>
         </div>
     </div>
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <script>
+        AOS.init({
+            duration: 500,
+            once: true
+        });
+    </script>
 </body>
 
 </html>
