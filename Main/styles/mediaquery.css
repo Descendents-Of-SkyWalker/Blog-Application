@@ -20,6 +20,15 @@
         padding: 20px 6%;
         font-size: 0.8rem;
     }
+    #search{
+        height: 30px;
+        width: 150px;
+        font-size: 0.8rem;
+    }
+    #s-icon{
+        height: 30px;
+        width: 35px;
+    }
     main{
         padding: 0px;
     }
@@ -163,7 +172,16 @@
         height: 24px;
     }
 }
-@media (max-width: 425px){
+@media (max-width: 426px){
+    .inner-nav{
+        flex-direction: column;
+    }
+    #toggle{
+        margin-bottom: 2.5px;
+    }
+    #filter{
+        margin-top: 2.5px;
+    }
     .inner-two section{
         flex-direction: column;
     }
@@ -195,8 +213,11 @@
         background-color: #25a18e;
     }
 }
-@media (max-width: 375px){
+@media (max-width: 400px){
     div[class^="title-"]{
         max-width: 209px;
+    }
+    #name{
+        font-size: 1.75rem;
     }
 }

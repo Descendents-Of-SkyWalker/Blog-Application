@@ -21,16 +21,23 @@
             <img id="menu" src="../Assets/menu.png" alt="&#9776">
         </div>
         <ul class="links">
-            <li><a href="#">Write</a></li>
-            <li><a href="#">About Us</a></li>
-            <li><a href="#">Logout</a></li>
+            <li><a href="#" id="home">Home</a></li>
+            <li><a href="#" id="write">Write</a></li>
+            <li><a href="#" id="profile">Profile</a></li>
+            <li><a href="../../Access/pages/index.html">Logout</a></li>
         </ul>
     </nav>
     <div class="container">
         <nav class="inner-nav">
-            <span>Blogs</span>
-            <input type="checkbox" id="switch" /><label for="switch"></label>
-            <span>Quotes</span>
+            <div id="toggle">
+                <span>Blogs</span>
+                <input type="checkbox" id="switch" /><label for="switch"></label>
+                <span>Quotes</span>
+            </div>
+            <div id="filter">
+                <input id="search" type="text" placeholder="Search" name="search">
+                <img id="s-icon" src="../Assets/search.png" alt="search">
+            </div>
         </nav>
         <main></main>
     </div>
