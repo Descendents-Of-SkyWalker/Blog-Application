@@ -14,9 +14,9 @@
                     }
             print_r($input_data);
             if ($db->insert_for_signup($input_data))
-                echo "Data inserted";
+                echo "true";
             else
-                echo "data not inserted";
+                echo "false";
             }
             elseif($_POST["action"] == "login"){
                 $input_data = array();
@@ -28,10 +28,10 @@
                     $input_data[$x] = $x_value;
                 }
                 if ($db->validate_data($input_data, 0)){
-                    echo "Success";
+                    echo "true";
                 }
                 else
-                    echo "Failed";
+                    echo "false";
             }
         }
     }

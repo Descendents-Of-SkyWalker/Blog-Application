@@ -60,4 +60,12 @@ async function getPostedData(entries){
 async function getter(entries) {
     let varr = await getPostedData(entries);
     console.log(varr);
+    setTimeout(function () {
+        if (varr == 'true'){
+            window.location.replace('http://127.0.0.1:5500/Main/pages/index.html#');
+        }
+        else{
+            alert('Authentication failed');
+        }
+    }, 500);
 }
