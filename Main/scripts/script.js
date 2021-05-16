@@ -1,6 +1,6 @@
 let blogsList = ["sample", "sample", "sample", "sample", "sample", "sample", "sample", "sample", "sample", "sample", "sample", "sample", "sample"];
 const main = document.querySelector('main');
-const checkBox = document.querySelector('input[type="checkbox"');
+const checkBox = document.querySelector('input[id="switch"]');
 
 class Blogs {
     constructor(len) {
@@ -309,3 +309,42 @@ profile.addEventListener('click', (e) => {
 
     main.appendChild(secProfile);
 });
+
+const write = document.querySelector('#write');
+write.addEventListener('click', (e) => {
+    e.preventDefault();
+    document.querySelector('.inner-nav').style.display = "none";
+    removeAllElements(main);
+    const containerWrite = document.createElement('section');
+    containerWrite.classList.add('container-write');
+    let att = document.createAttribute("data-aos");
+    att.value = "zoom-in";
+    containerWrite.setAttributeNode(att);
+
+    const editPanel = document.createElement('nav');
+    editPanel.classList.add('edit-panel');
+
+    const div = document.createElement('div');
+    div.id = 'toggle';
+    const span1 = document.createElement('span');
+    span1.innerHTML = "Blog";
+    div.appendChild(span1);
+    const choicebtn = document.createElement('input');
+    choicebtn.type = "checkbox";
+    choicebtn.id = "choice";
+    div.appendChild(choicebtn);
+    const label = document.createElement('label');
+    label.setAttribute("for", "choice");
+    div.appendChild(label);
+    const span2 = document.createElement('span');
+    span2.innerHTML = "Quote";
+    div.appendChild(span2);
+    editPanel.appendChild(div);
+
+    const textArea = document.createElement('textarea');
+    textArea.id = "textArea";
+
+    containerWrite.appendChild(editPanel);
+    containerWrite.appendChild(textArea);
+    main.appendChild(containerWrite);
+})

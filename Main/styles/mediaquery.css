@@ -77,6 +77,9 @@
         width: 20px;
         height: 20px;
     }
+    .details{
+        font-size: 0.8rem;
+    }
 }
 @media (max-width: 650px){
     .links {
@@ -211,6 +214,9 @@
     }
     .inner-two section:nth-child(2) .big, .three .tile:nth-of-type(even){
         background-color: #25a18e;
+    }
+    .profile{
+        width: 70%;
     }
 }
 @media (max-width: 400px){
