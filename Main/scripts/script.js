@@ -378,4 +378,23 @@ write.addEventListener('click', (e) => {
             title.style.display = "block";
         }
     });
+
+    document.querySelector('#savebtn').addEventListener('click', (e) => {
+        e.preventDefault();
+        if (document.querySelector('#choice').checked) {
+            let quoteContent = document.querySelector('#textArea').value;
+            console.log("QUOTE");
+            console.log(quoteContent);
+            document.querySelector('#textArea').value = "";
+        }
+        else {
+            let blogTitle = document.querySelector('#title').value;
+            let blogContent = document.querySelector('#textArea').value;
+            console.log("BLOG");
+            console.log(blogTitle);
+            console.log(blogContent);
+            document.querySelector('#title').value = "";
+            document.querySelector('#textArea').value = "";
+        }
+    });
 })
