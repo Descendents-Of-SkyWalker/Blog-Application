@@ -321,6 +321,11 @@ write.addEventListener('click', (e) => {
     att.value = "zoom-in";
     containerWrite.setAttributeNode(att);
 
+    const form = document.createElement('form');
+    form.method = "post";
+    form.action = "blog";
+    form.id = "writeForm";
+
     const editPanel = document.createElement('nav');
     editPanel.classList.add('edit-panel');
 
@@ -341,10 +346,36 @@ write.addEventListener('click', (e) => {
     div.appendChild(span2);
     editPanel.appendChild(div);
 
+    const save = document.createElement('input');
+    save.type = "submit";
+    save.value = "Save";
+    save.name = "save";
+    save.id = "savebtn";
+    editPanel.appendChild(save);
+
+    const title = document.createElement('input');
+    title.id = "title";
+    title.type = "text";
+    title.placeholder = "Enter title here";
+
     const textArea = document.createElement('textarea');
     textArea.id = "textArea";
+    textArea.placeholder = "Enter text here";
 
-    containerWrite.appendChild(editPanel);
-    containerWrite.appendChild(textArea);
+    form.appendChild(editPanel);
+    form.appendChild(title);
+    form.appendChild(textArea);
+
+    containerWrite.appendChild(form);
     main.appendChild(containerWrite);
+    document.querySelector('#choice').addEventListener('change', () => {
+        if (document.querySelector('#choice').checked) {
+            form.action = "quote";
+            title.style.display = "none";
+        }
+        else {
+            form.action = "blog";
+            title.style.display = "block";
+        }
+    });
 })
