@@ -44,14 +44,14 @@ function dataBuilder(data) {
         td_2.appendChild(input);
         table.appendChild(tr);
     }
-    container.appendChild(table);
+    container.prepend(table);
 }
 
 function bubbleMover(iterator) {
     let values = list[iterator].getBoundingClientRect();
-    bar.style.left = `${values.x - 15}px`;
-    bar.style.top = `${values.y + 45}px`;
-    bar.style.width = `${values.width + 30}px`;
+    bar.style.left = `${values.x - 5}px`;
+    bar.style.top = `${values.y + 30}px`;
+    bar.style.width = `${values.width + 10}px`;
 }
 
 // builds the interests page
@@ -72,7 +72,7 @@ function interestsBuilder() {
         btn.isSelectedFlag = false;
         inputs.appendChild(btn);
     }
-    container.appendChild(inputs);
+    container.prepend(inputs);
 }
 
 // shifts color from blue to green on circles

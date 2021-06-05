@@ -39,9 +39,9 @@ const bar = document.querySelector(".activeSelection");
 let values = list[0].getBoundingClientRect();
 const points = document.querySelectorAll(".outer-point");
 
-bar.style.left = `${values.x - 15}px`;
-bar.style.top = `${values.y + 45}px`;
-bar.style.width = `${values.width + 30}px`;
+bar.style.left = `${values.x - 5}px`;
+bar.style.top = `${values.y + 30}px`;
+bar.style.width = `${values.width + 10}px`;
 
 let aboutYouKeys = ["Name", "Age", "Gender", "Bio"];
 let credentialsKeys = ["Username", "Mail ID", "Password"];

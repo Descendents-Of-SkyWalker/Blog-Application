@@ -1,0 +1,84 @@
+@media (max-width: 768px){
+    .container h1{
+        font-size: 2.5rem;
+    }
+    .headers{
+        font-size: 1rem;
+    }
+    .outer-point{
+        font-size: 0.9rem;
+    }
+    #inputs-table td{
+        font-size: 1rem;
+    }
+    .text-box{
+        width: 220px;
+        height: 35px;
+    }
+    .choice{
+        padding: 10px;
+    }
+}
+@media (max-width: 426px){
+    .design-rect, .outer-circle, .inner-circle{
+        display: none;
+    }
+    .card{
+        width: 90vw;
+        left: 50%;
+    }
+    .list{
+        display: none;
+    }
+    #signUpLogin{
+        display: flex;
+        flex-direction: column;
+        padding: 0px;
+        margin-top: 5px;
+    }
+    #next{
+        margin-top: 0px;
+    }
+    .text-box{
+        width: 220px;
+        height: 30px;
+        font-size: 0.9rem;
+    }
+    .containment{
+        width: 95%;
+        margin-top: 30px;
+    }
+    .welcome h1{
+        font-size: 3rem;
+    }
+}
+@media (max-width: 376px){
+    .choice{
+        min-width: 70px;
+    }
+    .headers{
+        font-size: 0.9rem;
+    }
+    #inputs-table td{
+        font-size: 0.9rem;
+    }
+}
+@media (max-width: 321px){
+    .container h1{
+        font-size: 2rem;
+    }
+    .headers, #inputs-table td, .text-box, #next{
+        font-size: 0.7rem;
+    }
+    .text-box{
+        width: 180px;
+        height: 30px;
+    }
+    .choice{
+        min-width: 50px;
+        font-size: 0.7rem;
+    }
+    .welcome h1{
+        font-size: 2.5rem;
+    }
+}

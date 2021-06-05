@@ -8,6 +8,10 @@
 ::-webkit-scrollbar{
     display: none;
 }
+::selection {
+    color: black;
+    background: #9fffcb;
+}
 body{
     font-family: 'Poppins', sans-serif;
 }
@@ -67,28 +71,6 @@ a{
 #filter{
     display: flex;
     align-items: center;
-}
-#search{
-    height: 35px;
-    width: 170px;
-    border: 2px solid #004e64;
-    border-right-style: none;
-    border-top-left-radius: 25px;
-    border-bottom-left-radius: 25px;
-    color: #004e64;
-    font-size: 1rem;
-    font-family: 'Poppins', sans-serif;
-    padding-left: 10px;
-    outline: none;
-}
-#s-icon{
-    height: 35px;
-    width: 40px;
-    border: 2px solid #004e64;
-    border-left-style: none;
-    border-top-right-radius: 25px;
-    border-bottom-right-radius: 25px;
-    padding-right: 5px;
 }
 main{
     width: 100%;
@@ -374,4 +356,31 @@ main{
     padding: 20px;
     margin-bottom: 10px;
     outline: none;
+}
+.display-blog{
+    width: 90%;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+#title-box{
+    width: 100%;
+    padding: 5px 20px;
+    margin-bottom: 10px;
+    font-size: 1.5rem;
+    /* border: 1px solid black; */
+}
+#author-box{
+    width: 100%;
+    padding: 5px 20px;
+    margin-bottom: 10px;
+    font-size: 1rem;
+    /* border: 1px solid black; */
+}
+#content-box{
+    width: 100%;
+    padding: 5px 20px;
+    font-size: 1rem;
+    /* border: 1px solid black; */
 }

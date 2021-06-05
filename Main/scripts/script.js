@@ -195,21 +195,41 @@ class Quotes {
 }
 
 new Blogs(blogsList.length);
+tileOnClick();
 checkBox.addEventListener('change', () => {
     removeAllElements(main);
     if (!checkBox.checked) {
         new Blogs(blogsList.length);
+        tileOnClick();
     }
     else {
         new Quotes(blogsList.length);
     }
 });
-const tilesList = document.querySelectorAll('.tile');
-for (const tile of tilesList) {
-    tile.addEventListener('click', () => {
-        alert('Yes it works');
-    })
+function tileOnClick() {
+    const tilesList = document.querySelectorAll('.tile');
+    for (const tile of tilesList) {
+        tile.addEventListener('click', () => {
+            const blogTitle = tile.childNodes[0].textContent;
+            const blogAuthor = tile.childNodes[1].textContent;
+            // Can use blogTitle and blogAuthor variables to query the blog from the database and show it in the respective divs below
+            removeAllElements(main);
+            const displayBlog = document.createElement('div');
+            displayBlog.classList.add('display-blog');
+            const titleBox = document.createElement('div');
+            titleBox.id = "title-box";
+            const authorBox = document.createElement('div');
+            authorBox.id = "author-box";
+            const contentBox = document.createElement('div');
+            contentBox.id = "content-box";
+            displayBlog.appendChild(titleBox);
+            displayBlog.appendChild(authorBox);
+            displayBlog.appendChild(contentBox);
+            main.appendChild(displayBlog);
+        });
+    }
 }
+
 function removeAllElements(parent) {
     while (parent.firstChild) {
         parent.removeChild(parent.firstChild);
@@ -228,6 +248,7 @@ home.addEventListener('click', (e) => {
     removeAllElements(main);
     document.querySelector('.inner-nav').style.display = "flex";
     new Blogs(blogsList.length);
+    tileOnClick();
 });
 
 const profile = document.querySelector('#profile');

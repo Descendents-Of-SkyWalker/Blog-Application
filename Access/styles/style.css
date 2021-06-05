@@ -17,6 +17,10 @@ input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
         display: none;
 }
+::selection {
+    color: black;
+    background: #9fffcb;
+}
 body {
     font-family: 'Poppins', sans-serif;
     color:white;
@@ -157,7 +161,7 @@ body {
     align-items: center;
     justify-content: center;
     width: 100%;
-    padding-top: 2.5rem;
+    padding: 40px 0px;
     overflow: scroll;
 }
 #inputs-table{
@@ -197,9 +201,7 @@ body {
 #next{
     width: 100px;
     height: 40px;
-    position: absolute;
-    right: 5rem;
-    bottom: 5rem;
+    margin-top: 220px;
     background-color: white;
     color: #25a18e;
     border-style: solid;
