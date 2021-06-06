@@ -9,7 +9,7 @@
     // if (mysqli_connect_errno())
     //     echo "Database failed";
     class Database{
-        private $host = "localhost:3306";
+        private $host = "localhost:3307";
         private $user = "root";
         private $dbname = "Vibranium";
         private $dbpswd = "";

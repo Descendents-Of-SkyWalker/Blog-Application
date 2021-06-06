@@ -1,6 +1,6 @@
 let blogsList = ["sample", "sample", "sample", "sample", "sample", "sample", "sample", "sample", "sample", "sample", "sample", "sample", "sample"];
 const main = document.querySelector('main');
-const checkBox = document.querySelector('input[id="switch"]');
+const checkBox = document.querySelector('input[id="switch"]'); //switch button
 
 class Blogs {
     constructor(len) {
@@ -193,9 +193,11 @@ class Quotes {
         return temp;
     }
 }
-
+//loading the blogs from server
 new Blogs(blogsList.length);
 tileOnClick();
+// checkbox switch function
+// requires backend
 checkBox.addEventListener('change', () => {
     removeAllElements(main);
     if (!checkBox.checked) {
@@ -210,7 +212,8 @@ function tileOnClick() {
     const tilesList = document.querySelectorAll('.tile');
     for (const tile of tilesList) {
         tile.addEventListener('click', () => {
-            const blogTitle = tile.childNodes[0].textContent;
+            // requires fetching from database
+            const blogTitle = tile.childNodes[0].textContent; 
             const blogAuthor = tile.childNodes[1].textContent;
             // Can use blogTitle and blogAuthor variables to query the blog from the database and show it in the respective divs below
             removeAllElements(main);

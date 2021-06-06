@@ -12,7 +12,6 @@
                         }
                         $input_data[$x] = $x_value;
                     }
-            print_r($input_data);
             if ($db->insert_for_signup($input_data))
                 echo "true";
             else
