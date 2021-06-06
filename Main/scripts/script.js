@@ -7,19 +7,13 @@ let quotesWriter = ["sample", "sample", "sample"];
 const main = document.querySelector('main');
 const checkBox = document.querySelector('input[id="switch"]'); //switch button
 
-<<<<<<< HEAD
-new Blogs(blogsList.length);
-=======
-new Blogs(blogsTitle, blogsAuthor, blogsList);
->>>>>>> 0c8be636e34532258e85f6cca9a0d65b715c54f3
-tileOnClick();
+blogData();
 // checkbox switch function
 // requires backend
 checkBox.addEventListener('change', () => {
     removeAllElements(main);
     if (!checkBox.checked) {
-        new Blogs(blogsTitle, blogsAuthor, blogsList);
-        tileOnClick();
+        blogData();
     }
     else {
         new Quotes(quotesList, quotesWriter);
@@ -45,8 +39,7 @@ home.addEventListener('click', (e) => {
     document.querySelector('.inner-nav').style.display = "flex";
 
     if (!checkBox.checked) {
-        new Blogs(blogsTitle, blogsAuthor, blogsList);
-        tileOnClick();
+        blogData();
     }
     else {
         new Quotes(quotesList, quotesWriter);
