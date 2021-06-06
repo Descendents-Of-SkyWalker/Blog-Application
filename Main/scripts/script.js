@@ -2,6 +2,7 @@ let blogsList = ["sample", "sample", "sample", "sample", "sample", "sample", "sa
 const main = document.querySelector('main');
 const checkBox = document.querySelector('input[id="switch"]'); //switch button
 
+<<<<<<< HEAD
 class Blogs {
     constructor(len) {
         this.len = len;
@@ -194,6 +195,8 @@ class Quotes {
     }
 }
 //loading the blogs from server
+=======
+>>>>>>> cd230c870e0d94577479f8c4c927d44c9d8b1cf8
 new Blogs(blogsList.length);
 tileOnClick();
 // checkbox switch function
@@ -208,6 +211,7 @@ checkBox.addEventListener('change', () => {
         new Quotes(blogsList.length);
     }
 });
+<<<<<<< HEAD
 function tileOnClick() {
     const tilesList = document.querySelectorAll('.tile');
     for (const tile of tilesList) {
@@ -232,6 +236,8 @@ function tileOnClick() {
         });
     }
 }
+=======
+>>>>>>> cd230c870e0d94577479f8c4c927d44c9d8b1cf8
 
 function removeAllElements(parent) {
     while (parent.firstChild) {
