@@ -1,5 +1,5 @@
 let queryString = decodeURIComponent(window.location.search);
-queryString = queryString.substring(1);
+mail = queryString.substring(1);
 
 const url = "http://localhost/IWP-Project/Backend/main_page.php";
 
@@ -41,16 +41,18 @@ function blogData(){
 }
 function QuoteData(){
     setTimeout(async function () {
-        let val = await getBlogsData();
+        let val = await getQuotesData();
         setTimeout(function () {
             let name = val.name;
             let content = val.content;
+            console.log(name);
+            console.log(content);
             new Quotes(content, name);
             tileOnClick();
         }, 200)
     }, 0)
 }
-function insertQuoteData(mail, content){
+function insertQuoteData(content){
     setTimeout(async function () {
         let dataPackager = new FormData();
         dataPackager.append('action', 'insertQuote');
@@ -62,24 +64,26 @@ function insertQuoteData(mail, content){
         }).then(response => response.text());
         setTimeout(function () {
             if (result == 'true'){
+                console.log(result);
                 alert('Quote uploaded!');
             }
         }, 500)
     }, 0)
 }
 
-function insertBlogData(mail, title, content){
-    setTimeout(async function () {
-        let dataPackager = new FormData();
+function insertBlogData(title, content){
+    let dataPackager = new FormData();
         dataPackager.append('action', 'insertBlog');
         dataPackager.append("mail", mail);
         dataPackager.append("title", title);
         dataPackager.append("content", content);
+    setTimeout(async function () {
         let result = await fetch(url, {
             method: 'POST',
             body: dataPackager
         }).then(response => response.text());
         setTimeout(function () {
+            console.log(result);
             if (result == 'true'){
                 alert('Blog uploaded!');
             }

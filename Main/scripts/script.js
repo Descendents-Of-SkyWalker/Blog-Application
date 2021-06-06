@@ -1,9 +1,3 @@
-let blogsList = ["sample", "sample", "sample", "sample", "sample", "sample", "sample", "sample", "sample", "sample", "sample", "sample", "sample"];
-let blogsTitle = [];
-let blogsAuthor = [];
-let quotesList = [];
-let quotesWriter = ["sample", "sample", "sample"];
-
 const main = document.querySelector('main');
 const checkBox = document.querySelector('input[id="switch"]'); //switch button
 
@@ -16,7 +10,7 @@ checkBox.addEventListener('change', () => {
         blogData();
     }
     else {
-        new Quotes(quotesList, quotesWriter);
+        QuoteData();
     }
 });
 
@@ -42,7 +36,7 @@ home.addEventListener('click', (e) => {
         blogData();
     }
     else {
-        new Quotes(quotesList, quotesWriter);
+        QuoteData();
     }
 });
 
@@ -199,16 +193,13 @@ write.addEventListener('click', (e) => {
         e.preventDefault();
         if (document.querySelector('#choice').checked) {
             let quoteContent = document.querySelector('#textArea').value;
-            console.log("QUOTE");
-            console.log(quoteContent);
+            insertQuoteData(quoteContent);
             document.querySelector('#textArea').value = "";
         }
         else {
             let blogTitle = document.querySelector('#title').value;
             let blogContent = document.querySelector('#textArea').value;
-            console.log("BLOG");
-            console.log(blogTitle);
-            console.log(blogContent);
+            insertBlogData(blogTitle, blogContent);
             document.querySelector('#title').value = "";
             document.querySelector('#textArea').value = "";
         }
