@@ -62,7 +62,8 @@ async function getter(entries) {
     console.log(varr);
     setTimeout(function () {
         if (varr == 'true'){
-            window.open('http://127.0.0.1:5501/Main/pages/index.html');
+            document.cookie = `${entries.get('mail id')}`;
+            window.location.replace('http://127.0.0.1:5501/Main/pages/index.html');
         }
         else{
             alert('Authentication failed');

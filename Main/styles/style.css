@@ -369,18 +369,18 @@ main{
     padding: 5px 20px;
     margin-bottom: 10px;
     font-size: 1.5rem;
-    /* border: 1px solid black; */
+    border: 1px solid black;
 }
 #author-box{
     width: 100%;
     padding: 5px 20px;
     margin-bottom: 10px;
     font-size: 1rem;
-    /* border: 1px solid black; */
+    border: 1px solid black;
 }
 #content-box{
     width: 100%;
     padding: 5px 20px;
     font-size: 1rem;
-    /* border: 1px solid black; */
+    border: 1px solid black;
 }
