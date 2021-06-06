@@ -1,9 +1,3 @@
-let blogsList = ["sample", "sample", "sample", "sample", "sample", "sample", "sample", "sample", "sample", "sample", "sample", "sample", "sample"];
-let blogsTitle = [];
-let blogsAuthor = [];
-let quotesList = [];
-let quotesWriter = ["sample", "sample", "sample"];
-
 const main = document.querySelector('main');
 const checkBox = document.querySelector('input[id="switch"]'); //switch button
 
@@ -16,7 +10,7 @@ checkBox.addEventListener('change', () => {
         blogData();
     }
     else {
-        new Quotes(quotesList, quotesWriter);
+        QuoteData();
     }
 });
 
@@ -42,88 +36,14 @@ home.addEventListener('click', (e) => {
         blogData();
     }
     else {
-        new Quotes(quotesList, quotesWriter);
+        QuoteData();
     }
 });
 
 const profile = document.querySelector('#profile');
 profile.addEventListener('click', (e) => {
     e.preventDefault();
-    document.querySelector('.inner-nav').style.display = "none";
-    removeAllElements(main);
-
-    const secProfile = document.createElement('section');
-    secProfile.classList.add("profile");
-    let att = document.createAttribute("data-aos");
-    att.value = "zoom-in";
-    secProfile.setAttributeNode(att);
-
-    const img = document.createElement('img');
-    img.src = "../Assets/profile_w.png";
-    img.id = "p-icon";
-    secProfile.appendChild(img);
-
-    const name = document.createElement('div');
-    name.classList.add('details');
-    name.innerHTML = "Name";
-    secProfile.appendChild(name);
-
-    const username = document.createElement('div');
-    username.classList.add('details');
-    username.innerHTML = "Username";
-    secProfile.appendChild(username);
-
-    const age = document.createElement('div');
-    age.classList.add('details');
-    age.innerHTML = "Age";
-    secProfile.appendChild(age);
-
-    const gender = document.createElement('div');
-    gender.classList.add('details');
-    gender.innerHTML = "Gender";
-    secProfile.appendChild(gender);
-
-    const address = document.createElement('div');
-    address.classList.add('details');
-    address.innerHTML = "Address";
-    secProfile.appendChild(address);
-
-    const number = document.createElement('div');
-    number.classList.add('details');
-    number.innerHTML = "Mobile Number";
-    secProfile.appendChild(number);
-
-    const email = document.createElement('div');
-    email.classList.add('details');
-    email.innerHTML = "Email";
-    secProfile.appendChild(email);
-
-    const bio = document.createElement('div');
-    bio.classList.add('details');
-    bio.innerHTML = "Bio";
-    secProfile.appendChild(bio);
-
-    const interests = document.createElement('div');
-    interests.classList.add('details');
-    interests.classList.add('interests');
-    interests.innerHTML = "Interests";
-    const div = document.createElement('div');
-    const int1 = document.createElement('div');
-    int1.classList.add('interest');
-    int1.innerHTML = "Fun";
-    div.appendChild(int1);
-    const int2 = document.createElement('div');
-    int2.classList.add('interest');
-    int2.innerHTML = "Music";
-    div.appendChild(int2);
-    const int3 = document.createElement('div');
-    int3.classList.add('interest');
-    int3.innerHTML = "Work";
-    div.appendChild(int3);
-    interests.appendChild(div);
-    secProfile.appendChild(interests);
-
-    main.appendChild(secProfile);
+    poll_for_details();
 });
 
 const write = document.querySelector('#write');
@@ -199,16 +119,13 @@ write.addEventListener('click', (e) => {
         e.preventDefault();
         if (document.querySelector('#choice').checked) {
             let quoteContent = document.querySelector('#textArea').value;
-            console.log("QUOTE");
-            console.log(quoteContent);
+            insertQuoteData(quoteContent);
             document.querySelector('#textArea').value = "";
         }
         else {
             let blogTitle = document.querySelector('#title').value;
             let blogContent = document.querySelector('#textArea').value;
-            console.log("BLOG");
-            console.log(blogTitle);
-            console.log(blogContent);
+            insertBlogData(blogTitle, blogContent);
             document.querySelector('#title').value = "";
             document.querySelector('#textArea').value = "";
         }

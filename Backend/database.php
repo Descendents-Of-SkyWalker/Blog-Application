@@ -94,25 +94,31 @@
             $query_1 = 'select name from users where mail_id=' . "'". $mail ."'";
             $res = mysqli_query($this->db, $query_1);
             $name = mysqli_fetch_assoc($res)['name'];
-            $query_2 = 'insert into blogs values(' . $name . $title . $content . ")";
+            $query_2 = "insert into blogs values('" . $name . "','" . $title . "','" . $content . "')";
             if(mysqli_query($this->db, $query_2)){
                 echo 'true';
             }
             else{
-                echo 'false';
+                echo mysqli_error($this->db);
             }
         }
         function insert_for_quote($mail, $content){
             $query_1 = 'select name from users where mail_id=' . "'". $mail ."'";
             $res = mysqli_query($this->db, $query_1);
             $name = mysqli_fetch_assoc($res)['name'];
-            $query_2 = 'insert into quotes values(' . $name .  $content . ")";
+            $query_2 = 'insert into quotes values("' . $name .  '","' .  $content . '")';
             if(mysqli_query($this->db, $query_2)){
                 echo 'true';
             }
             else{
-                echo 'false';
+                echo mysqli_error($this->db);
             }
+        }
+        function query_for_details($mail){
+            $query = 'select * from users where mail_id=' . '"' . $mail . '"';
+            $res = mysqli_query($this->db, $query);
+            $data = mysqli_fetch_assoc($res);
+            echo json_encode($data);
         }
     }
     

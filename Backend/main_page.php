@@ -15,5 +15,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         else if ($_POST['action'] == 'insertQuote') {
             $db->insert_for_quote($_POST['mail'], $_POST['content']);
         }
+        else if ($_POST['action'] == 'poll') {
+            $db->query_for_details($_POST['mail']);
+        }
     }
 }
