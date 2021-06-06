@@ -18,3 +18,13 @@ create table Users(
     interests varchar(500)
 );
 
+create table quotes(
+    name varchar(255),
+    content varchar(3000)
+);
+
+create table blogs(
+    name varchar(255),
+    title varchar(255),
+    content varchar(5000)
+);
