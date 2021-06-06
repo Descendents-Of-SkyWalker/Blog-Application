@@ -1,11 +1,16 @@
 class Blogs {
-    constructor(len) {
-        this.len = len;
+    constructor(blogsTitle, blogsAuthor, blogsList) {
+        this.len = blogsList.length;
+        this.blogsTitle = blogsTitle;
+        this.blogsAuthor = blogsAuthor;
+        this.blogsList = blogsList;
+        this.idx = 0;
         this.addTiles();
     }
-    addTiles() {
+    addTiles(blogsTitle, blogsAuthor, blogsList) {
         while (this.len >= 5) {
             this.fiveTiles();
+            this.idx += 5;
             this.len -= 5;
         }
         if (this.len === 4) {
@@ -26,17 +31,17 @@ class Blogs {
         const innerTwo = this.addElement('section', 'inner-two');
         const section1 = document.createElement('section');
         const section2 = document.createElement('section');
-        const big1 = this.addContent(this.addElement('div', 'big'));
-        const small1 = this.addContent(this.addElement('div', 'small'));
+        const big1 = this.addContent(this.addElement('div', 'big'), this.blogsTitle[this.idx], this.blogsAuthor[this.idx], this.blogsList[this.idx]);
+        const small1 = this.addContent(this.addElement('div', 'small'), this.blogsTitle[this.idx + 1], this.blogsAuthor[this.idx + 1], this.blogsList[this.idx + 1]);
         section1.appendChild(big1);
         section1.appendChild(small1);
-        const big2 = this.addContent(this.addElement('div', 'big'));
-        const small2 = this.addContent(this.addElement('div', 'small'));
+        const big2 = this.addContent(this.addElement('div', 'big'), this.blogsTitle[this.idx + 2], this.blogsAuthor[this.idx + 2], this.blogsList[this.idx + 2]);
+        const small2 = this.addContent(this.addElement('div', 'small'), this.blogsTitle[this.idx + 3], this.blogsAuthor[this.idx + 3], this.blogsList[this.idx + 3]);
         section2.appendChild(small2);
         section2.appendChild(big2);
         innerTwo.appendChild(section1);
         innerTwo.appendChild(section2);
-        const innerThree = this.addContent(this.addElement('section', 'inner-three'));
+        const innerThree = this.addContent(this.addElement('section', 'inner-three'), this.blogsTitle[this.idx + 4], this.blogsAuthor[this.idx + 4], this.blogsList[this.idx + 4]);
         five.appendChild(innerTwo);
         five.appendChild(innerThree);
         main.appendChild(five);
@@ -46,12 +51,12 @@ class Blogs {
         const innerTwo = this.addElement('section', 'inner-two');
         const section1 = document.createElement('section');
         const section2 = document.createElement('section');
-        const big1 = this.addContent(this.addElement('div', 'big'));
-        const small1 = this.addContent(this.addElement('div', 'small'));
+        const big1 = this.addContent(this.addElement('div', 'big'), this.blogsTitle[this.idx], this.blogsAuthor[this.idx], this.blogsList[this.idx]);
+        const small1 = this.addContent(this.addElement('div', 'small'), this.blogsTitle[this.idx + 1], this.blogsAuthor[this.idx + 1], this.blogsList[this.idx + 1]);
         section1.appendChild(big1);
         section1.appendChild(small1);
-        const big2 = this.addContent(this.addElement('div', 'big'));
-        const small2 = this.addContent(this.addElement('div', 'small'));
+        const big2 = this.addContent(this.addElement('div', 'big'), this.blogsTitle[this.idx + 2], this.blogsAuthor[this.idx + 2], this.blogsList[this.idx + 2]);
+        const small2 = this.addContent(this.addElement('div', 'small'), this.blogsTitle[this.idx + 3], this.blogsAuthor[this.idx + 3], this.blogsList[this.idx + 3]);
         section2.appendChild(small2);
         section2.appendChild(big2);
         innerTwo.appendChild(section1);
@@ -63,9 +68,9 @@ class Blogs {
         const three = this.addElement('section', 'three');
         const innerTwo = this.addElement('section', 'inner-two');
         const section1 = document.createElement('section');
-        const small1 = this.addContent(this.addElement('div', 'small'));
-        const big = this.addContent(this.addElement('div', 'big'));
-        const small2 = this.addContent(this.addElement('div', 'small'));
+        const small1 = this.addContent(this.addElement('div', 'small'), this.blogsTitle[this.idx], this.blogsAuthor[this.idx], this.blogsList[this.idx]);
+        const big = this.addContent(this.addElement('div', 'big'), this.blogsTitle[this.idx + 1], this.blogsAuthor[this.idx + 1], this.blogsList[this.idx + 1]);
+        const small2 = this.addContent(this.addElement('div', 'small'), this.blogsTitle[this.idx + 2], this.blogsAuthor[this.idx + 2], this.blogsList[this.idx + 2]);
         section1.appendChild(small1);
         section1.appendChild(big);
         section1.appendChild(small2);
@@ -77,8 +82,8 @@ class Blogs {
         const three = this.addElement('section', 'three');
         const innerTwo = this.addElement('section', 'inner-two');
         const section1 = document.createElement('section');
-        const big = this.addContent(this.addElement('div', 'big'));
-        const small = this.addContent(this.addElement('div', 'small'));
+        const big = this.addContent(this.addElement('div', 'big'), this.blogsTitle[this.idx], this.blogsAuthor[this.idx], this.blogsList[this.idx]);
+        const small = this.addContent(this.addElement('div', 'small'), this.blogsTitle[this.idx + 1], this.blogsAuthor[this.idx + 1], this.blogsList[this.idx + 1]);
         section1.appendChild(big);
         section1.appendChild(small);
         innerTwo.appendChild(section1);
@@ -89,7 +94,7 @@ class Blogs {
         const three = this.addElement('section', 'three');
         const innerTwo = this.addElement('section', 'inner-two');
         const section1 = document.createElement('section');
-        const small = this.addContent(this.addElement('div', 'small'));
+        const small = this.addContent(this.addElement('div', 'small'), this.blogsTitle[this.idx], this.blogsAuthor[this.idx], this.blogsList[this.idx]);
         section1.appendChild(small);
         innerTwo.appendChild(section1);
         three.appendChild(innerTwo);
@@ -113,26 +118,27 @@ class Blogs {
         }
         return temp;
     }
-    addContent(parent) {
+    addContent(parent, title, author, content) {
         // Pass as parameters, the title, name of author, and first 230 char of the blog
         // t-->title | a-->author name | b-->230 chars+'...'
         let t;
         if (parent.classList.contains('inner-three')) {
             t = this.addElement('div', 'title-it');
-            t.innerHTML = "Sample";
+            t.innerHTML = title;
         }
         else if (parent.classList.contains('big')) {
             t = this.addElement('div', 'title-b');
-            t.innerHTML = "Sample";
+            t.innerHTML = title;
         }
         else if (parent.classList.contains('small')) {
             t = this.addElement('div', 'title-s');
-            t.innerHTML = "Sample";
+            t.innerHTML = title;
         }
         const a = this.addElement('div', 'author');
-        a.innerHTML = "Rajvi Jasani";
+        a.innerHTML = author;
         const b = this.addElement('div', 'content');
-        b.innerHTML = "This paragraph is of two hundred and thirty characters including white spaces. You will be able to see only the first two hundred and thirty characters of this blog. To read the full blog, click on this tile. It might interest you...";
+        // b.innerHTML = "This paragraph is of two hundred and thirty characters including white spaces. You will be able to see only the first two hundred and thirty characters of this blog. To read the full blog, click on this tile. It might interest you...";
+        b.innerHTML = content;
         parent.appendChild(t);
         parent.appendChild(a);
         parent.appendChild(b);

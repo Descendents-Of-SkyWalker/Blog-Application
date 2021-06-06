@@ -1,6 +1,9 @@
 class Quotes {
-    constructor(len) {
-        this.len = len;
+    constructor(quotesList, quotesWriter) {
+        this.len = quotesWriter.length;
+        this.quotesList = quotesList;
+        this.quotesWriter = quotesWriter;
+        this.idx = 0;
         this.setTiles();
     }
     setTiles() {
@@ -22,9 +25,11 @@ class Quotes {
             qr.src = "../Assets/quote-right-w.png";
             qr.alt = "q";
             const quote = this.addElement('div', 'quote');
-            quote.innerHTML = "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Consequuntur cum aperiam blanditiis repellendus possimus nemo quam saepe dicta, temporibus, nobis adipisci suscipit at perspiciatis. Consequatur nobis expedita at atque dolores!"
+            // quote.innerHTML = "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Consequuntur cum aperiam blanditiis repellendus possimus nemo quam saepe dicta, temporibus, nobis adipisci suscipit at perspiciatis. Consequatur nobis expedita at atque dolores!"
+            quote.innerHTML = this.quotesList[this.idx];
             const writer = this.addElement('div', 'writer');
-            writer.innerHTML = "Lorem Ipsum";
+            // writer.innerHTML = "Lorem Ipsum";
+            writer.innerHTML = this.quotesWriter[this.idx];
             const ql = this.addElement('img', 'q-icon');
             ql.src = "../Assets/quote-left-w.png";
             ql.alt = "q";
@@ -34,6 +39,7 @@ class Quotes {
             quoteTile.appendChild(ql);
             quoteTileWrap.appendChild(quoteTile)
             quoteContainer.appendChild(quoteTileWrap);
+            this.idx++;
         }
         main.appendChild(quoteContainer);
     }
