@@ -114,6 +114,12 @@
                 echo mysqli_error($this->db);
             }
         }
+        function query_for_details($mail){
+            $query = 'select * from users where mail_id=' . '"' . $mail . '"';
+            $res = mysqli_query($this->db, $query);
+            $data = mysqli_fetch_assoc($res);
+            echo json_encode($data);
+        }
     }
     
 ?>
