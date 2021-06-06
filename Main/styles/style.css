@@ -200,6 +200,9 @@ main{
     font-size: 0.8rem;
     font-weight: 300;
 }
+.full-content{
+    display: none;
+}
 .quote-container{
     width: 90%;
     height: 350px;

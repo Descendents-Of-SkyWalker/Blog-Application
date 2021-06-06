@@ -138,9 +138,12 @@ class Blogs {
         a.innerHTML = author;
         const b = this.addElement('div', 'content');
         b.innerHTML = content.substring(0, 230) + "...";
+        const p = this.addElement('p', 'full-content');
+        p.innerHTML = content;
         parent.appendChild(t);
         parent.appendChild(a);
         parent.appendChild(b);
+        parent.appendChild(p);
         return parent;
     }
 }
@@ -151,16 +154,19 @@ function tileOnClick() {
         tile.addEventListener('click', () => {
             const blogTitle = tile.childNodes[0].textContent;
             const blogAuthor = tile.childNodes[1].textContent;
-            // Can use blogTitle and blogAuthor variables to query the blog from the database and show it in the respective divs below
+            const blogContent = tile.childNodes[3].textContent;
             removeAllElements(main);
             const displayBlog = document.createElement('div');
             displayBlog.classList.add('display-blog');
             const titleBox = document.createElement('div');
             titleBox.id = "title-box";
+            titleBox.innerHTML = blogTitle;
             const authorBox = document.createElement('div');
             authorBox.id = "author-box";
+            authorBox.innerHTML = blogAuthor;
             const contentBox = document.createElement('div');
             contentBox.id = "content-box";
+            contentBox.innerHTML = blogContent;
             displayBlog.appendChild(titleBox);
             displayBlog.appendChild(authorBox);
             displayBlog.appendChild(contentBox);
