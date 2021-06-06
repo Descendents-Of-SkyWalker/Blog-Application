@@ -1,19 +1,24 @@
 let blogsList = ["sample", "sample", "sample", "sample", "sample", "sample", "sample", "sample", "sample", "sample", "sample", "sample", "sample"];
+let blogsTitle = [];
+let blogsAuthor = [];
+let quotesList = [];
+let quotesWriter = ["sample", "sample", "sample"];
+
 const main = document.querySelector('main');
 const checkBox = document.querySelector('input[id="switch"]'); //switch button
 
-new Blogs(blogsList.length);
+new Blogs(blogsTitle, blogsAuthor, blogsList);
 tileOnClick();
 // checkbox switch function
 // requires backend
 checkBox.addEventListener('change', () => {
     removeAllElements(main);
     if (!checkBox.checked) {
-        new Blogs(blogsList.length);
+        new Blogs(blogsTitle, blogsAuthor, blogsList);
         tileOnClick();
     }
     else {
-        new Quotes(blogsList.length);
+        new Quotes(quotesList, quotesWriter);
     }
 });
 
@@ -34,8 +39,14 @@ home.addEventListener('click', (e) => {
     e.preventDefault();
     removeAllElements(main);
     document.querySelector('.inner-nav').style.display = "flex";
-    new Blogs(blogsList.length);
-    tileOnClick();
+
+    if (!checkBox.checked) {
+        new Blogs(blogsTitle, blogsAuthor, blogsList);
+        tileOnClick();
+    }
+    else {
+        new Quotes(quotesList, quotesWriter);
+    }
 });
 
 const profile = document.querySelector('#profile');
