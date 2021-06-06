@@ -137,8 +137,7 @@ class Blogs {
         const a = this.addElement('div', 'author');
         a.innerHTML = author;
         const b = this.addElement('div', 'content');
-        // b.innerHTML = "This paragraph is of two hundred and thirty characters including white spaces. You will be able to see only the first two hundred and thirty characters of this blog. To read the full blog, click on this tile. It might interest you...";
-        b.innerHTML = content;
+        b.innerHTML = content.substring(0, 230) + "...";
         parent.appendChild(t);
         parent.appendChild(a);
         parent.appendChild(b);
